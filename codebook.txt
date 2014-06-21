@@ -1,0 +1,172 @@
+CODEBOOK for Getting and Cleaning Data Project from Coursea
+
+The experiments have been carried out with a group of 30 volunteers within an age bracket of 19-48 years. Each person performed six activities (WALKING, WALKING_UPSTAIRS, WALKING_DOWNSTAIRS, SITTING, STANDING, LAYING) wearing a smartphone (Samsung Galaxy S II) on the waist. Using its embedded accelerometer and gyroscope, we captured 3-axial linear acceleration and 3-axial angular velocity at a constant rate of 50Hz. The experiments have been video-recorded to label the data manually. The obtained dataset has been randomly partitioned into two sets, where 70% of the volunteers was selected for generating the training data and 30% the test data. 
+
+The sensor signals (accelerometer and gyroscope) were pre-processed by applying noise filters and then sampled in fixed-width sliding windows of 2.56 sec and 50% overlap (128 readings/window). The sensor acceleration signal, which has gravitational and body motion components, was separated using a Butterworth low-pass filter into body acceleration and gravity. The gravitational force is assumed to have only low frequency components, therefore a filter with 0.3 Hz cutoff frequency was used. From each window, a vector of features was obtained by calculating variables from the time and frequency domain. See 'features_info.txt' for more details. 
+
+For each record it is provided:
+======================================
+
+- Triaxial acceleration from the accelerometer (total acceleration) and the estimated body acceleration.
+- Triaxial Angular velocity from the gyroscope. 
+- A 561-feature vector with time and frequency domain variables. 
+- Its activity label. 
+- An identifier of the subject who carried out the experiment.
+
+Feature Selection 
+=================
+
+The features selected for this database come from the accelerometer and gyroscope 3-axial raw signals tAcc-XYZ and tGyro-XYZ. These time domain signals (prefix 't' to denote time) were captured at a constant rate of 50 Hz. Then they were filtered using a median filter and a 3rd order low pass Butterworth filter with a corner frequency of 20 Hz to remove noise. Similarly, the acceleration signal was then separated into body and gravity acceleration signals (tBodyAcc-XYZ and tGravityAcc-XYZ) using another low pass Butterworth filter with a corner frequency of 0.3 Hz. 
+
+Subsequently, the body linear acceleration and angular velocity were derived in time to obtain Jerk signals (tBodyAccJerk-XYZ and tBodyGyroJerk-XYZ). Also the magnitude of these three-dimensional signals were calculated using the Euclidean norm (tBodyAccMag, tGravityAccMag, tBodyAccJerkMag, tBodyGyroMag, tBodyGyroJerkMag). 
+
+Finally a Fast Fourier Transform (FFT) was applied to some of these signals producing fBodyAcc-XYZ, fBodyAccJerk-XYZ, fBodyGyro-XYZ, fBodyAccJerkMag, fBodyGyroMag, fBodyGyroJerkMag. (Note the 'f' to indicate frequency domain signals). 
+
+These signals were used to estimate variables of the feature vector for each pattern:  
+'-XYZ' is used to denote 3-axial signals in the X, Y and Z directions.
+
+tBodyAcc-XYZ
+tGravityAcc-XYZ
+tBodyAccJerk-XYZ
+tBodyGyro-XYZ
+tBodyGyroJerk-XYZ
+tBodyAccMag
+tGravityAccMag
+tBodyAccJerkMag
+tBodyGyroMag
+tBodyGyroJerkMag
+fBodyAcc-XYZ
+fBodyAccJerk-XYZ
+fBodyGyro-XYZ
+fBodyAccMag
+fBodyAccJerkMag
+fBodyGyroMag
+fBodyGyroJerkMag
+
+The set of variables that were estimated from these signals are: 
+
+mean(): Mean value
+std(): Standard deviation
+mad(): Median absolute deviation 
+max(): Largest value in array
+min(): Smallest value in array
+sma(): Signal magnitude area
+energy(): Energy measure. Sum of the squares divided by the number of values. 
+iqr(): Interquartile range 
+entropy(): Signal entropy
+arCoeff(): Autorregresion coefficients with Burg order equal to 4
+correlation(): correlation coefficient between two signals
+maxInds(): index of the frequency component with largest magnitude
+meanFreq(): Weighted average of the frequency components to obtain a mean frequency
+skewness(): skewness of the frequency domain signal 
+kurtosis(): kurtosis of the frequency domain signal 
+bandsEnergy(): Energy of a frequency interval within the 64 bins of the FFT of each window.
+angle(): Angle between to vectors.
+
+Additional vectors obtained by averaging the signals in a signal window sample. These are used on the angle() variable:
+
+gravityMean
+tBodyAccMean
+tBodyAccJerkMean
+tBodyGyroMean
+tBodyGyroJerkMean
+
+The complete list of variables of each feature vector for file2-tidy.txt
+subject id
+	value 1 - 10
+activity labels
+	1 WALKING
+	2 WALKING_UPSTAIRS
+	3 WALKING_DOWNSTAIRS
+	4 SITTING
+	5 STANDING
+	6 LAYING
+# fields are mean summarized by values by activity per subject
+# column names have been changed to be R compliant
+# "-" changed to "_" and then used make.names() which changes non allowed characters to "."
+"tBodyAcc_mean.._X"
+"tBodyAcc_mean.._Y"
+"tBodyAcc_mean.._Z"
+"tBodyAcc_std.._X"
+"tBodyAcc_std.._Y"
+"tBodyAcc_std.._Z"
+"tGravityAcc_mean.._X"
+"tGravityAcc_mean.._Y"
+"tGravityAcc_mean.._Z"
+"tGravityAcc_std.._X"
+"tGravityAcc_std.._Y"
+"tGravityAcc_std.._Z"
+"tBodyAccJerk_mean.._X"
+"tBodyAccJerk_mean.._Y"
+"tBodyAccJerk_mean.._Z"
+"tBodyAccJerk_std.._X"
+"tBodyAccJerk_std.._Y"
+"tBodyAccJerk_std.._Z"
+"tBodyGyro_mean.._X"
+"tBodyGyro_mean.._Y"
+"tBodyGyro_mean.._Z"
+"tBodyGyro_std.._X"
+"tBodyGyro_std.._Y"
+"tBodyGyro_std.._Z"
+"tBodyGyroJerk_mean.._X"
+"tBodyGyroJerk_mean.._Y"
+"tBodyGyroJerk_mean.._Z"
+"tBodyGyroJerk_std.._X"
+"tBodyGyroJerk_std.._Y"
+"tBodyGyroJerk_std.._Z"
+"tBodyAccMag_mean.."
+"tBodyAccMag_std.."
+"tGravityAccMag_mean.."
+"tGravityAccMag_std.."
+"tBodyAccJerkMag_mean.."
+"tBodyAccJerkMag_std.."
+"tBodyGyroMag_mean.."
+"tBodyGyroMag_std.."
+"tBodyGyroJerkMag_mean.."
+"tBodyGyroJerkMag_std.."
+"fBodyAcc_mean.._X"
+"fBodyAcc_mean.._Y"
+"fBodyAcc_mean.._Z"
+"fBodyAcc_std.._X"
+"fBodyAcc_std.._Y"
+"fBodyAcc_std.._Z"
+"fBodyAcc_meanFreq.._X"
+"fBodyAcc_meanFreq.._Y"
+"fBodyAcc_meanFreq.._Z"
+"fBodyAccJerk_mean.._X"
+"fBodyAccJerk_mean.._Y"
+"fBodyAccJerk_mean.._Z"
+"fBodyAccJerk_std.._X"
+"fBodyAccJerk_std.._Y"
+"fBodyAccJerk_std.._Z"
+"fBodyAccJerk_meanFreq.._X"
+"fBodyAccJerk_meanFreq.._Y"
+"fBodyAccJerk_meanFreq.._Z"
+"fBodyGyro_mean.._X"
+"fBodyGyro_mean.._Y"
+"fBodyGyro_mean.._Z"
+"fBodyGyro_std.._X"
+"fBodyGyro_std.._Y"
+"fBodyGyro_std.._Z"
+"fBodyGyro_meanFreq.._X"
+"fBodyGyro_meanFreq.._Y"
+"fBodyGyro_meanFreq.._Z"
+"fBodyAccMag_mean.."
+"fBodyAccMag_std.."
+"fBodyAccMag_meanFreq.."
+"fBodyBodyAccJerkMag_mean.."
+"fBodyBodyAccJerkMag_std.."
+"fBodyBodyAccJerkMag_meanFreq.."
+"fBodyBodyGyroMag_mean.."
+"fBodyBodyGyroMag_std.."
+"fBodyBodyGyroMag_meanFreq.."
+"fBodyBodyGyroJerkMag_mean.."
+"fBodyBodyGyroJerkMag_std.."
+"fBodyBodyGyroJerkMag_meanFreq.."
+"angle.tBodyAccMean.gravity."
+"angle.tBodyAccJerkMean..gravityMean."
+"angle.tBodyGyroMean.gravityMean."
+"angle.tBodyGyroJerkMean.gravityMean."
+"angle.X.gravityMean."
+"angle.Y.gravityMean."
+"angle.Z.gravityMean."
