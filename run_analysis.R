@@ -5,9 +5,10 @@
 #Uses descriptive activity names to name the activities in the data set
 #Appropriately labels the data set with descriptive variable names. 
 #Creates a second, independent tidy data set with the average of each variable 
-##for each activity and each subject. 
+##for each activity and each subject.
+
 setwd("C:/Users/pam/Desktop/Coursea Courses/Data Science Specialization/Getting and Cleaning Data/Project")
-dir("test")
+
 a = read.table("test/X_test.txt")
 b = read.table("train/X_train.txt")
 c = read.table("test/y_test.txt")
@@ -21,9 +22,6 @@ h = read.table("train/subject_train.txt")
 ab = rbind(a,b)
 cd = rbind(c,d)
 gh = rbind(g,h)
-
-# make column names R compliant 
-library(Hmisc)
 
 #convert activity code to activity label
 for (label in cd){
@@ -54,7 +52,6 @@ selectCols = ab[,colNumbers]
 origNames <- cbind(gh,activity,selectCols)
 file3 <- cbind(c(integer(2),colNumbers),colnames(file1),colnames(origNames))
 write.table(file3,file="features-with-R.txt",row.names=FALSE)
-
 #steps 1 thru 4 complete
 
 # step 5 how many rows seems like 1 row per subject/activity -> 180
