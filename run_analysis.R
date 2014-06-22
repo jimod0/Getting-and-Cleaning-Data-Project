@@ -25,34 +25,42 @@ gh = rbind(g,h)
 # make column names R compliant 
 library(Hmisc)
 
-# make names R compliant in a new column
-e[,3] <- gsub("-","_",e[,2])
-e[,3] <- make.names(e[,3])
-# THEN assign names to columns
-colnames(ab) <- e[,3]               #561 columns
-
 #convert activity code to activity label
 for (label in cd){
     activity <- f[label,2]
 }
 
-# create a file with field names that have "std" | "mean"
+# create a file with column names that only have "std" | "mean"
 ### use grep to find substrs "std" | "mean"
-colNumbers <- grep("mean|std",e[,2],ignore.case=TRUE)
-# To exclude angle(Mean(s)) and meanFreq USE 
-# grep("_mean\\.|_std\\.",e[,2]f,ignore.case=TRUE)
+colNumbers <- grep("mean|std",e[,2],ignore.case=TRUE) # 86
+# To exclude columns like angle(Mean(s)) and meanFreq USE 
+# colNumbers <- grep("-mean\\(|-std\\(",e[,2],ignore.case=TRUE) # 66
+
+# make names R compliant in a new column
+e[,3] <- gsub("-","_",e[,2])
+e[,3] <- make.names(e[,3])
+# THEN assign names to columns
+colnames(ab) <- e[,3]
 
 # Create table of selected fields
 selectCols = ab[,colNumbers]
 # append Activity Label rows as first field
 colnames(gh) <- 'subject'
 file1 <- cbind(gh,activity,selectCols)
+write.table(file1,file="file1.txt")
+# DOCUMENTATION FOR CODEBOOK 
+colnames(ab) <- e[,2] # original names
+selectCols = ab[,colNumbers]
+origNames <- cbind(gh,activity,selectCols)
+file3 <- cbind(c(integer(2),colNumbers),colnames(file1),colnames(origNames))
+write.table(file3,file="features-with-R.txt",row.names=FALSE)
+
 #steps 1 thru 4 complete
 
-# step 5 how many rows seems like 1 row per subject/activity 
-# step 5 how many columns same # as step 4 per community TA
+# step 5 how many rows seems like 1 row per subject/activity -> 180
 file2 <- aggregate(file1[,3:88],list(file1$subject,file1$activity),mean )
 colnames(file2)[1:2] <- c("subject","activity")
-# done with step 5 - runs by subject per activity to reverse 
+# by subject per activity to reverse 
 # file2 <- aggregate(file1[,3:88],list(file1$activity,file1$subject),mean )
 # colnames(file2)[1:2] <- c("activity","subject")
+write.table(file2,file="file2-tidy.txt")
