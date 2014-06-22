@@ -33,7 +33,7 @@ Downloaded file from internet AND unzipped it into 'Project' directory
 ### decided to use the more inclusive selection
 	colNumbers <- grep("mean|std",e[,2],ignore.case=TRUE) # 86 columns
 # To exclude columns like angle(Mean(s)) and meanFreq USE 
-# colNumbers <- grep("-mean\\(|-std\\(",e[,2],ignore.case=TRUE) # 66 columns
+	colNumbers <- grep("-mean\\(|-std\\(",e[,2],ignore.case=TRUE) # 66 columns
 # make colnames R compliant 
 	e[,3] <- gsub("-","_",e[,2])
 	e[,3] <- make.names(e[,3])
