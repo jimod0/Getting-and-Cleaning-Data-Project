@@ -56,8 +56,8 @@ Downloaded file from internet AND unzipped it into 'Project' directory
 	file2 <- aggregate(file1[,3:88],list(file1$subject,file1$activity),mean )
 	colnames(file2)[1:2] <- c("subject","activity")
 # by subject per activity to reverse 
-# file2 <- aggregate(file1[,3:88],list(file1$activity,file1$subject),mean )
-# colnames(file2)[1:2] <- c("activity","subject")
+	file2 <- aggregate(file1[,3:88],list(file1$activity,file1$subject),mean )
+	colnames(file2)[1:2] <- c("activity","subject")
 # file2-tidy.txt 6 activities and 30 subjects -> 180 rows uploaded to github 
 	write.table(file2,file="file2-tidy.txt") #file2-tidy.txt 180 rows
 	
